@@ -1,167 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-<<<<<<< Updated upstream
-<title>Edge Rooftop • Drink Finder (with fixes)</title>
-=======
-<title>Edge Rooftop • Drink Finder (Playful + Flip)</title>
->>>>>>> Stashed changes
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Edge Rooftop • Drink Finder (refined)</title>
 <style>
   :root{
-    --bg:#FFF8EE;--card:#FFFFFF;--ink:#1E1B16;--muted:#7C6F62;
+    --bg:#FFF8EE;--card:#FFFFFF;--ink:#1A1612;--muted:#756a5e;
     --brand:#EA8E68;--brand-2:#5CC1B5;--accent:#F3C99D;
-<<<<<<< Updated upstream
-    --shadow:0 8px 20px rgba(0,0,0,.08);--radius:18px;--border:#EADFD0;
+    --border:#EADFD0;--shadow:0 10px 26px rgba(0,0,0,.08);
+    --r:18px;
   }
   *{box-sizing:border-box}
-  body{margin:0;font-family:-apple-system,system-ui,Segoe UI,Roboto,Arial;color:var(--ink);background:linear-gradient(180deg,var(--bg),#fff);
-       font-size:18px;line-height:1.35;} /* bigger base font */
-  .app{max-width:520px;margin:0 auto;min-height:100svh;display:flex;flex-direction:column;overflow-x:hidden}
-  header{position:sticky;top:0;background:rgba(255,255,255,.86);backdrop-filter: blur(8px);border-bottom:1px solid #f0e6da;z-index:5;}
-  .brand{display:flex;align-items:center;gap:.7rem;padding:16px;}
-  .logo{width:30px;height:30px;border-radius:10px;background: conic-gradient(from 210deg, var(--brand), var(--accent));box-shadow:var(--shadow);}
-  .title{font-weight:800;font-size:20px; letter-spacing:.2px}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family: ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial;
+    color:var(--ink);
+    background:linear-gradient(180deg,var(--bg),#fff);
+    font-size:18px; /* bigger base */
+    line-height:1.35;
+  }
+  .app{max-width:520px;margin:0 auto;min-height:100svh;display:flex;flex-direction:column}
+  header{position:sticky;top:0;background:rgba(255,255,255,.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);z-index:5}
+  .brand{display:flex;align-items:center;gap:.7rem;padding:16px}
+  .logo{width:30px;height:30px;border-radius:10px;background:conic-gradient(from 210deg,var(--brand),var(--accent));box-shadow:var(--shadow)}
+  .title{font-weight:800;font-size:20px}
   .subtitle{font-size:13px;color:var(--muted)}
-  main{flex:1;padding:18px 16px 28px}
-  .card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;color:var(--ink)}
-=======
-    --shadow:0 8px 20px rgba(0,0,0,.08);--radius:18px;
-  }
-  *{box-sizing:border-box}
-  body{margin:0;font-family:-apple-system,system-ui,Segoe UI,Roboto,Arial;color:var(--ink);background:linear-gradient(180deg,var(--bg),#fff);}
-  .app{max-width:480px;margin:0 auto;min-height:100svh;display:flex;flex-direction:column;overflow-x:hidden}
-  header{position:sticky;top:0;background:rgba(255,255,255,.86);backdrop-filter: blur(8px);border-bottom:1px solid #f0e6da;z-index:5;}
-  .brand{display:flex;align-items:center;gap:.6rem;padding:14px 16px;}
-  .logo{width:28px;height:28px;border-radius:8px;background: conic-gradient(from 210deg, var(--brand), var(--accent));box-shadow:var(--shadow);}
-  .title{font-weight:700; letter-spacing:.2px}
-  .subtitle{font-size:12px;color:var(--muted)}
-  main{flex:1;padding:18px 16px 28px}
-  .card{background:#fff;border:1px solid #EADFD0;border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;color:var(--ink)}
->>>>>>> Stashed changes
-  .hero{text-align:center;padding:22px 16px;background:
-      radial-gradient(120px 60px at 90% -10%,rgba(234,142,104,.20),transparent 60%),
-      radial-gradient(140px 70px at -10% 0,rgba(92,193,181,.20),transparent 60%),
-      var(--card);
-    border-radius:var(--radius);border:1px dashed #F0E6DA;}
-<<<<<<< Updated upstream
-  .pill{display:inline-flex;align-items:center;gap:.5rem;border:1px solid #F0E6DA; padding:.55rem .85rem;border-radius:999px;font-size:13px;color:#6b5f53;background:#fff;}
-  .cta{margin-top:14px;display:grid;gap:10px;grid-template-columns:1fr 1fr;}
-  button{appearance:none;border:0;border-radius:14px;padding:16px;font-weight:800;background:var(--brand);color:#fff;box-shadow:var(--shadow);cursor:pointer;transform:translateZ(0);transition:transform .08s ease, box-shadow .2s}
+  main{flex:1;padding:18px 14px 28px}
+  .card{background:#fff;border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow);padding:18px}
+  .hero{ text-align:center; padding:22px 16px; background:
+        radial-gradient(130px 70px at 85% -10%,rgba(234,142,104,.18),transparent 60%),
+        radial-gradient(160px 80px at -10% 0,rgba(92,193,181,.18),transparent 60%), #fff;
+        border:1px dashed var(--border); border-radius:var(--r);}
+  .pill{display:inline-flex;align-items:center;gap:.5rem;border:1px solid var(--border);padding:.5rem .8rem;border-radius:999px;font-size:13px;color:var(--muted);background:#fff}
+  .cta{margin-top:14px;display:grid;gap:10px;grid-template-columns:1fr 1fr}
+  button{appearance:none;border:0;border-radius:14px;padding:16px;font-weight:800;background:var(--brand);color:#fff;box-shadow:var(--shadow);cursor:pointer;transition:transform .08s ease}
   button:active{transform:scale(.98)}
-  button.secondary{background:#fff;color:var(--ink);border:1px solid #EADFD0}
-  .progress{height:10px;background:#F3E7D8;border-radius:999px;overflow:hidden;margin:12px 0 12px;position:relative}
+  button.secondary{background:#fff;color:var(--ink);border:1px solid var(--border)}
+  .progress{height:10px;background:#F3E7D8;border-radius:999px;overflow:hidden;margin:12px 0}
   .fill{height:100%;width:0;background:linear-gradient(90deg,var(--brand),var(--brand-2));transition:width .45s cubic-bezier(.22,.61,.36,1)}
-  .topbar{display:flex;align-items:center;justify-content:space-between;margin:6px 0 12px}
+  .topbar{display:flex;align-items:center;gap:10px}
   .q-title{font-weight:900;font-size:22px}
-  .chips{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px}
-  .chip{position:relative;overflow:hidden;padding:12px 16px;border-radius:999px;border:1px solid #EADFD0;background:#fff;font-weight:700;font-size:16px;color:var(--ink);cursor:pointer;transition:background .2s,color .2s,transform .08s}
-  .chip:active{transform:scale(.98)}
-  .chip[data-active="true"]{background:var(--brand);color:#fff;border-color:var(--brand)}
   .meta{font-size:14px;color:var(--muted)}
-  .nav{display:flex;gap:10px;margin-top:16px}
-=======
-  .pill{display:inline-flex;align-items:center;gap:.5rem;border:1px solid #F0E6DA; padding:.4rem .7rem;border-radius:999px;font-size:12px;color:#6b5f53;background:#fff;}
-  .cta{margin-top:14px;display:grid;gap:10px;grid-template-columns:1fr 1fr;}
-  button{appearance:none;border:0;border-radius:14px;padding:14px 16px;font-weight:700;background:var(--brand);color:#fff;box-shadow:var(--shadow);cursor:pointer;transform:translateZ(0);transition:transform .08s ease, box-shadow .2s}
-  button:active{transform:scale(.98)}
-  button.secondary{background:#fff;color:var(--ink);border:1px solid #EADFD0}
-  .progress{height:8px;background:#F3E7D8;border-radius:999px;overflow:hidden;margin:10px 0 10px;position:relative}
-  .fill{height:100%;width:0;background:linear-gradient(90deg,var(--brand),var(--brand-2));transition:width .45s cubic-bezier(.22,.61,.36,1)}
-  .topbar{display:flex;align-items:center;justify-content:space-between;margin:6px 0 12px}
-  .q-title{font-weight:700}
-  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
-  .chip{position:relative;overflow:hidden;padding:10px 14px;border-radius:999px;border:1px solid #EADFD0;background:#fff;font-weight:600;font-size:14px;color:var(--ink);cursor:pointer;transition:background .2s,color .2s,transform .08s}
-  .chip:active{transform:scale(.98)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px}
+  .chip{padding:12px 16px;border-radius:999px;border:1px solid var(--border);background:#fff;font-weight:700;cursor:pointer}
   .chip[data-active="true"]{background:var(--brand);color:#fff;border-color:var(--brand)}
-  .meta{font-size:12px;color:var(--muted)}
-  .nav{display:flex;gap:10px;margin-top:14px}
->>>>>>> Stashed changes
-  .hidden{display:none !important}
-  .grid{display:grid;gap:12px}
-  .choice{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border:1px solid #EADFD0;border-radius:14px;background:#fff;}
-  .result{display:flex;gap:14px;align-items:flex-start;border:1px solid #F0E6DA;padding:14px;border-radius:14px;background:#fff;animation:fadeUp .35s ease}
-<<<<<<< Updated upstream
-  .avatar{flex-shrink:0;width:52px;height:52px;border-radius:12px;background:radial-gradient(60px 40px at 70% 20%, rgba(234,142,104,.5), transparent 60%), #FFEFE4;display:grid;place-items:center;font-weight:800;color:#9c5436;}
-  .badge{font-size:12px;border:1px solid #EADFD0;padding:4px 8px;border-radius:999px}
+  .tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+  .tile{border:1px solid var(--border);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:8px;align-items:flex-start;background:#fff;cursor:pointer}
+  .tile strong{font-size:18px}
+  .tile[data-active="true"]{outline:3px solid var(--brand);background:#fff7f1}
+  .nav{display:flex;gap:10px;margin-top:16px}
+  .result{display:flex;gap:14px;align-items:flex-start;border:1px solid var(--border);padding:14px;border-radius:14px;background:#fff}
+  .avatar{width:52px;height:52px;border-radius:12px;background:radial-gradient(60px 40px at 70% 20%, rgba(234,142,104,.5), transparent 60%), #FFEFE4;display:grid;place-items:center;font-weight:800}
+  .badge{font-size:12px;border:1px solid var(--border);padding:4px 8px;border-radius:999px}
   .price{font-weight:900}
   .scorebar{height:8px;background:#F3E7D8;border-radius:999px;overflow:hidden}
   .scorebar > span{display:block;height:100%;background:linear-gradient(90deg,var(--brand),var(--brand-2))}
-  .menu-link{display:block;text-align:center;margin-top:10px;font-weight:800;color:#2d615a;text-decoration:none;}
-=======
-  .avatar{flex-shrink:0;width:48px;height:48px;border-radius:12px;background:radial-gradient(60px 40px at 70% 20%, rgba(234,142,104,.5), transparent 60%), #FFEFE4;display:grid;place-items:center;font-weight:800;color:#9c5436;}
-  .badge{font-size:11px;border:1px solid #EADFD0;padding:3px 8px;border-radius:999px}
-  .price{font-weight:700}
-  .scorebar{height:6px;background:#F3E7D8;border-radius:999px;overflow:hidden}
-  .scorebar > span{display:block;height:100%;background:linear-gradient(90deg,var(--brand),var(--brand-2))}
-  .menu-link{display:block;text-align:center;margin-top:10px;font-weight:700;color:#2d615a;text-decoration:none;}
->>>>>>> Stashed changes
+  .menu-link{display:block;text-align:center;margin-top:12px;font-weight:800;color:#2d615a;text-decoration:none}
   .slideIn{animation:slideIn .28s cubic-bezier(.22,.61,.36,1)}
-  .slideOut{animation:slideOut .22s ease forwards}
-  @keyframes slideIn{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:translateX(0)}}
-  @keyframes slideOut{to{opacity:0;transform:translateX(-12px)}}
-  @keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-  @media (prefers-reduced-motion: reduce){.slideIn,.slideOut,.result{animation:none}.fill{transition:none}}
-
-<<<<<<< Updated upstream
-  /* swipe cards (still available for other Qs if needed) */
-  .stack{position:relative;height:260px;margin-top:6px;perspective:1000px}
-  .cardOpt{position:absolute;inset:0;margin:auto;max-width:420px;height:240px;background:#fff;border:1px solid #EADFD0;border-radius:16px;
-    box-shadow:0 12px 30px rgba(0,0,0,.07);display:grid;place-items:center;font-weight:700;touch-action:none}
-  .badge2{position:absolute;top:10px;left:12px;padding:6px 10px;border-radius:999px;background:#0002;font-size:12px}
-  .cardOpt.like{outline:2px solid #0ead69} .cardOpt.nope{outline:2px solid #e11d48}
-
-  /* dots */
-  #dots .dot{width:28px;height:28px;border-radius:999px;border:1px solid #eadfd0;background:#fff;display:grid;place-items:center;font-weight:800;cursor:pointer}
-=======
-  /* SWIPE CARDS + FLIP */
-  .stack{position:relative;height:260px;margin-top:6px;perspective:1000px}
-  .cardOpt{position:absolute;inset:0;margin:auto;max-width:420px;height:240px;border-radius:16px;touch-action:none}
-  .cardInner{position:absolute;inset:0;border-radius:16px;transform-style:preserve-3d;transition:transform .35s ease}
-  .cardFace{position:absolute;inset:0;background:#fff;border:1px solid #EADFD0;box-shadow:0 12px 30px rgba(0,0,0,.07);border-radius:16px;backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;text-align:center}
-  .cardBack{transform:rotateY(180deg);background:#fffefb}
-  .flip .cardInner{transform:rotateY(180deg)}
-  .badge2{position:absolute;top:10px;left:12px;padding:6px 10px;border-radius:999px;background:#0002;font-size:12px}
-  .hintFlip{position:absolute;bottom:10px;left:0;right:0;text-align:center;font-size:12px;color:#7c6f62}
-  .cardOpt.like .cardFace{outline:2px solid #0ead69} 
-  .cardOpt.nope .cardFace{outline:2px solid #e11d48}
-
-  /* drag-to-rank */
-  .rank{display:flex;flex-wrap:wrap;gap:8px}
-  .rank .chip{user-select:none;touch-action:none}
-  .rank .chip::after{content:'≡';margin-left:8px;opacity:.45}
-
-  /* dots */
-  #dots .dot{width:26px;height:26px;border-radius:999px;border:1px solid #eadfd0;background:#fff;display:grid;place-items:center;font-weight:700;cursor:pointer}
->>>>>>> Stashed changes
-  #dots .dot[data-active="true"]{background:var(--brand);color:#fff;border-color:var(--brand)}
-
-  /* toast + confetti */
-  #confetti{position:fixed;inset:0;pointer-events:none}
-<<<<<<< Updated upstream
-  .toast{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);background:#111;color:#fff;padding:10px 14px;border-radius:999px;font-size:14px;opacity:0;transition:opacity .25s, transform .25s;z-index:50}
-  .toast.show{opacity:1;transform:translate(-50%, -4px)}
-
-  /* Bigger, easier slider (Q4) */
-  input[type="range"]{width:100%;height:36px;-webkit-appearance:none;background:transparent;margin-top:10px}
+  @keyframes slideIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+  /* Bigger slider */
+  input[type="range"]{width:100%;height:36px;-webkit-appearance:none;background:transparent;margin-top:8px}
   input[type="range"]::-webkit-slider-runnable-track{height:12px;background:#f0e6da;border-radius:999px;border:1px solid var(--border)}
   input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;margin-top:-10px;width:32px;height:32px;border-radius:50%;background:linear-gradient(180deg,#fff,#f7f2eb);border:2px solid var(--brand);box-shadow:0 4px 10px rgba(0,0,0,.15)}
-  input[type="range"]::-moz-range-track{height:12px;background:#f0e6da;border-radius:999px;border:1px solid var(--border)}
-  input[type="range"]::-moz-range-thumb{width:30px;height:30px;border-radius:50%;background:#fff;border:2px solid var(--brand)}
-=======
-  .toast{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);background:#111;color:#fff;padding:10px 14px;border-radius:999px;font-size:13px;opacity:0;transition:opacity .25s, transform .25s;z-index:50}
+  input[type="range"]::-webkit-slider-thumb{width:30px;height:30px;border-radius:50%;background:#fff;border:2px solid var(--brand)}
+  /* dots */
+  #dots{display:flex;gap:8px}
+  #dots .dot{width:28px;height:28px;border-radius:999px;border:1px solid var(--border);background:#fff;display:grid;place-items:center;font-weight:800;cursor:pointer}
+  #dots .dot[data-active="true"]{background:var(--brand);color:#fff;border-color:var(--brand)}
+  /* confetti + toast */
+  #confetti{position:fixed;inset:0;pointer-events:none}
+  .toast{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);background:#111;color:#fff;padding:10px 14px;border-radius:999px;font-size:14px;opacity:0;transition:opacity .25s, transform .25s;z-index:50}
   .toast.show{opacity:1;transform:translate(-50%, -4px)}
->>>>>>> Stashed changes
 </style>
 </head>
 <body>
 <canvas id="confetti"></canvas>
-<<<<<<< Updated upstream
-<div class="toast" id="toast">Tip: Swipe ⟶ Next, ⟵ Back</div>
-=======
-<div class="toast" id="toast">Tip: Swipe ⟶ for Next, ⟵ for Back · Tap card to flip</div>
->>>>>>> Stashed changes
+<div class="toast" id="toast">Tip: swipe ⟶ Next, ⟵ Back</div>
 
 <div class="app" id="app">
   <header>
@@ -169,35 +85,153 @@
       <div class="logo" aria-hidden="true"></div>
       <div>
         <div class="title">Edge Rooftop</div>
-<<<<<<< Updated upstream
-        <div class="subtitle">Drink Finder · prototype</div>
-=======
-        <div class="subtitle">Drink Finder · Playful prototype</div>
->>>>>>> Stashed changes
+        <div class="subtitle">Drink Finder • simplified interactions</div>
       </div>
     </div>
   </header>
 
   <main>
-    <!-- LANDING -->
+    <!-- Landing -->
     <section id="landing" class="grid">
-      <div class="hero slideIn">
+      <div class="hero card slideIn">
         <div class="pill">🍹 Fresh-squeezed • Handcrafted</div>
-<<<<<<< Updated upstream
         <h2 style="margin:10px 0 6px;font-size:24px">What are you in the mood for?</h2>
-=======
-        <h2 style="margin:10px 0 6px">What are you in the mood for?</h2>
->>>>>>> Stashed changes
-        <p class="meta" style="margin:0 0 12px">Answer a few quick questions and we’ll suggest a drink you’ll love.</p>
+        <p class="meta">Answer a few quick questions and we’ll suggest a drink you’ll love.</p>
         <div class="cta">
-          <!-- Accessibility: add aria-label for screen readers -->
-          <button id="start" aria-label="Start drink finder questionnaire">Start</button>
+          <button id="start">Start</button>
           <button class="secondary" id="skip">Skip to menu</button>
         </div>
-        <button id="dice" class="secondary" style="margin-top:10px">🎲 Surprise me</button>
       </div>
-      <div class="card slideIn" style="display:flex;align-items:center;gap:12px;">
-        <div class="avatar">%</div>
+    </section>
+
+    <!-- Wizard -->
+    <section id="wizard" class="hidden">
+      <div class="topbar">
+        <div class="progress" style="flex:1"><div class="fill" id="prog"></div></div>
+        <div id="dots"></div>
+      </div>
+
+      <div class="card slideIn" id="qCard">
+        <div class="q-title" id="qTitle">Question</div>
+        <div id="qBody"></div>
+
+        <div id="peek" class="card" style="margin-top:12px;background:#fff7ed;border-style:dashed">
+          <div class="meta">Live preview</div>
+          <div id="peekBody" class="meta">Pick a couple options to see a suggestion…</div>
+        </div>
+
+        <div class="nav">
+          <button class="secondary" id="back">Back</button>
+          <button id="next">Next</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results -->
+    <section id="results" class="hidden">
+      <div class="card slideIn">
+        <div class="q-title">Your picks</div>
+        <div id="why" class="meta" style="margin-bottom:6px"></div>
+        <div id="whyChips" class="chips" style="margin-top:0"></div>
+        <div id="cards" class="grid" style="margin-top:8px"></div>
+        <a href="#" id="fullMenu" class="menu-link">View full menu</a>
+      </div>
+    </section>
+
+    <!-- Menu -->
+    <section id="menu" class="hidden">
+      <div class="card slideIn">
+        <div class="q-title">Full Menu (mock)</div>
+        <div class="chips" id="tabs"></div>
+        <div id="menuList" class="grid" style="margin-top:12px"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer style="padding:12px;text-align:center" class="meta">Prototype mockup · not affiliated with Edge Rooftop</footer>
+</div>
+
+<script>
+(function(){
+  const $=s=>document.querySelector(s);
+  const vibrate=(ms=12)=>{try{navigator.vibrate&&navigator.vibrate(ms)}catch(e){}};
+
+  // ---- DATA (same as before) ----------------------------------------------
+  const MENU={
+    cocktails:[
+      {name:"Texas Sipper",price:16,tags:["vodka","citrus","light","bubbly","refreshing"],desc:"tito’s, elderflower, blood orange purée, Topo Chico"},
+      {name:"Signature Old Fashioned",price:18,tags:["whiskey","stirred","spirit-forward","classic","bitters"],desc:"Maker’s Mark, vanilla demerara, black walnut bitters"},
+      {name:"Sunny Disposition",price:18,tags:["whiskey","citrus","fruit","bright"],desc:"rye, hennessy VS, blueberry, coconut, lemon"},
+      {name:"Southern Belle",price:16,tags:["gin","citrus","herbal","bubbly"],desc:"Gray Whale gin, prickly pear & mint cordial, lime, yuzu soda"},
+      {name:"Zilker Mule",price:16,tags:["vodka","ginger","citrus","refreshing","bubbly"],desc:"Haku vodka, mango soju cordial, lime, ginger beer"},
+      {name:"Soco Marg",price:16,tags:["tequila","citrus","salt","classic"],desc:"tequila, orange, watermelon agave, lime"},
+      {name:"One Flew South",price:18,tags:["mezcal","bitter","citrus","smoky"],desc:"El Tesoro, Ilegal mezcal, Suze, passionfruit, lime"},
+      {name:"2nd Street Espresso Martini",price:18,tags:["vodka","coffee","sweet","creamy"],desc:"vodka, espresso liqueur, vanilla, espresso"},
+      {name:"Mama Tried (Frozen)",price:15,tags:["vodka","frozen","slushy","sweet","fun"],desc:"lemon vodka, moscato, peach purée, lemon"},
+      {name:"El Mexicano Margarita",price:16,tags:["tequila","spicy","citrus"],desc:"jalapeño-infused agave cordial, lime & orange"},
+      {name:"Pocketful of Sunshine (NA)",price:14,tags:["na","citrus","mint","bubbly"],desc:"Ritual NA tequila, prickly pear & mint, lime, yuzu"},
+      {name:"Dragon Berry Specialty (N/A)",price:12,tags:["na","tropical","sweet"],desc:"lime, orange, pineapple, dragon fruit"}
+    ],
+    draft:[
+      {name:"ABW Pearl Snap Pilsner",price:9,tags:["beer","lager","crisp"]},
+      {name:"ABW 701 Sun IPA",price:9,tags:["beer","ipa","hoppy"]},
+      {name:"Zilker Icy Boys Lager",price:9,tags:["beer","lager","light"]},
+      {name:"Zilker Parks & Rec Pale Ale",price:9,tags:["beer","pale","hoppy"]}
+    ],
+    canned:[
+      {name:"Miller Light",price:8,tags:["beer","lager","light"]},
+      {name:"Michelob Ultra",price:8,tags:["beer","lager","light"]},
+      {name:"Live Oak Hefeweizen",price:8,tags:["beer","wheat","banana"]},
+      {name:"Best Day Kölsch (N/A)",price:8,tags:["na","beer","kolsch"]},
+      {name:"ABW Fire Eagle IPA",price:8,tags:["beer","ipa","hoppy"]},
+      {name:"High Noon Black Cherry",price:8,tags:["seltzer","fruit","bubbly"]}
+    ],
+    wineRed:[
+      {name:"Clos Du Bois Cabernet",price:14,priceBottle:56,tags:["wine","red","cabernet","smooth"]},
+      {name:"Juggernaut Cabernet",price:19,priceBottle:76,tags:["wine","red","cabernet","bold"]},
+      {name:"Tapiz Malbec",price:15,priceBottle:60,tags:["wine","red","malbec"]},
+      {name:"Fossil Point Pinot Noir",price:14,priceBottle:56,tags:["wine","red","pinot"]},
+      {name:"Banshee Red Blend",price:14,priceBottle:56,tags:["wine","red","blend"]}
+    ],
+    wineWhite:[
+      {name:"Clos Du Bois Chardonnay",price:14,priceBottle:56,tags:["wine","white","chardonnay","buttery"]},
+      {name:"Stags Leap Chardonnay",price:19,priceBottle:76,tags:["wine","white","chardonnay","rich"]},
+      {name:"Scarpetta Pinot Grigio",price:14,priceBottle:56,tags:["wine","white","pinotgrigio","crisp"]},
+      {name:"Whitehaven Sauvignon Blanc",price:15,priceBottle:60,tags:["wine","white","sauvblanc","zesty"]}
+    ],
+    bubbles:[
+      {name:"Bisol Jeio Prosecco",price:14,priceBottle:56,tags:["wine","sparkling","prosecco","bubbly"]},
+      {name:"Veuve Clicquot",price:150,tags:["wine","sparkling","champagne","celebration"]},
+      {name:"Chandon Garden Spritz",price:17,priceBottle:68,tags:["wine","sparkling","spritz","bitter"]},
+      {name:"Whispering Angel Rosé",price:19,priceBottle:76,tags:["wine","rose","dry","light"]}
+    ]
+  };
+  const ALL_DRINKS=[...MENU.cocktails,...MENU.draft,...MENU.canned,...MENU.wineRed,...MENU.wineWhite,...MENU.bubbles];
+
+  // ---- QUESTIONS (updated types) ------------------------------------------
+  const QUESTIONS=[
+    { id:"mood", title:"Pick a vibe", type:"tiles", single:true, options:[
+      {v:"refreshing", note:"citrus, bubbly, light", emoji:"🍋"},
+      {v:"cozy",       note:"whiskey, stirred, espresso", emoji:"🧣"},
+      {v:"fun",        note:"frozen, fruity, sweet", emoji:"🎉"},
+      {v:"adventurous",note:"mezcal, bitter, spicy", emoji:"🧭"},
+      {v:"classic",    note:"old fashioneds, margs, prosecco", emoji:"🎩"},
+      {v:"zero-proof", note:"NA spirits, mint, yuzu", emoji:"🫧"},
+    ], required:true },
+
+    { id:"base", title:"Choose your base (up to 3)", type:"chips", multi:true, max:3,
+      options:["vodka","tequila","whiskey","gin","mezcal","beer","wine","seltzer","na"], required:true },
+
+    { id:"taste", title:"Pick up to 3 tastes", type:"chips", multi:true, max:3,
+      options:["citrus","sweet","bitter","spicy","herbal","coffee","bubbly","fruit"] },
+
+    { id:"strength", title:"How strong?", type:"slider", range:["light","balanced","spirit-forward"], required:true },
+
+    { id:"extras", title:"Any hard no's? (tap to toggle)", type:"chips", multi:true, options:["no coffee","no spicy","no bubbles","no bitter","no sweet"] }
+  ];
+
+  // ---- APP -----------------------------------------------------------------
+  const App={n... (file continues)
         <div>
           <b>Smart Match</b><div class="meta">We score each drink and explain why it fits.</div>
         </div>
