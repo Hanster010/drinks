@@ -1,92 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-<title>Edge Rooftop • Drink Finder (Playful + Flip)</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Edge Rooftop • Drink Finder (refined)</title>
 <style>
   :root{
-    --bg:#FFF8EE;--card:#FFFFFF;--ink:#1E1B16;--muted:#7C6F62;
+    --bg:#FFF8EE;--card:#FFFFFF;--ink:#1A1612;--muted:#756a5e;
     --brand:#EA8E68;--brand-2:#5CC1B5;--accent:#F3C99D;
-    --shadow:0 8px 20px rgba(0,0,0,.08);--radius:18px;
+    --border:#EADFD0;--shadow:0 10px 26px rgba(0,0,0,.08);
+    --r:18px;
   }
   *{box-sizing:border-box}
-  body{margin:0;font-family:-apple-system,system-ui,Segoe UI,Roboto,Arial;color:var(--ink);background:linear-gradient(180deg,var(--bg),#fff);}
-  .app{max-width:480px;margin:0 auto;min-height:100svh;display:flex;flex-direction:column;overflow-x:hidden}
-  header{position:sticky;top:0;background:rgba(255,255,255,.86);backdrop-filter: blur(8px);border-bottom:1px solid #f0e6da;z-index:5;}
-  .brand{display:flex;align-items:center;gap:.6rem;padding:14px 16px;}
-  .logo{width:28px;height:28px;border-radius:8px;background: conic-gradient(from 210deg, var(--brand), var(--accent));box-shadow:var(--shadow);}
-  .title{font-weight:700; letter-spacing:.2px}
-  .subtitle{font-size:12px;color:var(--muted)}
-  main{flex:1;padding:18px 16px 28px}
-  .card{background:#fff;border:1px solid #EADFD0;border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;color:var(--ink)}
-  .hero{text-align:center;padding:22px 16px;background:
-      radial-gradient(120px 60px at 90% -10%,rgba(234,142,104,.20),transparent 60%),
-      radial-gradient(140px 70px at -10% 0,rgba(92,193,181,.20),transparent 60%),
-      var(--card);
-    border-radius:var(--radius);border:1px dashed #F0E6DA;}
-  .pill{display:inline-flex;align-items:center;gap:.5rem;border:1px solid #F0E6DA; padding:.4rem .7rem;border-radius:999px;font-size:12px;color:#6b5f53;background:#fff;}
-  .cta{margin-top:14px;display:grid;gap:10px;grid-template-columns:1fr 1fr;}
-  button{appearance:none;border:0;border-radius:14px;padding:14px 16px;font-weight:700;background:var(--brand);color:#fff;box-shadow:var(--shadow);cursor:pointer;transform:translateZ(0);transition:transform .08s ease, box-shadow .2s}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family: ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial;
+    color:var(--ink);
+    background:linear-gradient(180deg,var(--bg),#fff);
+    font-size:18px; /* bigger base */
+    line-height:1.35;
+  }
+  .app{max-width:520px;margin:0 auto;min-height:100svh;display:flex;flex-direction:column}
+  header{position:sticky;top:0;background:rgba(255,255,255,.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);z-index:5}
+  .brand{display:flex;align-items:center;gap:.7rem;padding:16px}
+  .logo{width:30px;height:30px;border-radius:10px;background:conic-gradient(from 210deg,var(--brand),var(--accent));box-shadow:var(--shadow)}
+  .title{font-weight:800;font-size:20px}
+  .subtitle{font-size:13px;color:var(--muted)}
+  main{flex:1;padding:18px 14px 28px}
+  .card{background:#fff;border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow);padding:18px}
+  .hero{ text-align:center; padding:22px 16px; background:
+        radial-gradient(130px 70px at 85% -10%,rgba(234,142,104,.18),transparent 60%),
+        radial-gradient(160px 80px at -10% 0,rgba(92,193,181,.18),transparent 60%), #fff;
+        border:1px dashed var(--border); border-radius:var(--r);}
+  .pill{display:inline-flex;align-items:center;gap:.5rem;border:1px solid var(--border);padding:.5rem .8rem;border-radius:999px;font-size:13px;color:var(--muted);background:#fff}
+  .cta{margin-top:14px;display:grid;gap:10px;grid-template-columns:1fr 1fr}
+  button{appearance:none;border:0;border-radius:14px;padding:16px;font-weight:800;background:var(--brand);color:#fff;box-shadow:var(--shadow);cursor:pointer;transition:transform .08s ease}
   button:active{transform:scale(.98)}
-  button.secondary{background:#fff;color:var(--ink);border:1px solid #EADFD0}
-  .progress{height:8px;background:#F3E7D8;border-radius:999px;overflow:hidden;margin:10px 0 10px;position:relative}
+  button.secondary{background:#fff;color:var(--ink);border:1px solid var(--border)}
+  .progress{height:10px;background:#F3E7D8;border-radius:999px;overflow:hidden;margin:12px 0}
   .fill{height:100%;width:0;background:linear-gradient(90deg,var(--brand),var(--brand-2));transition:width .45s cubic-bezier(.22,.61,.36,1)}
-  .topbar{display:flex;align-items:center;justify-content:space-between;margin:6px 0 12px}
-  .q-title{font-weight:700}
-  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
-  .chip{position:relative;overflow:hidden;padding:10px 14px;border-radius:999px;border:1px solid #EADFD0;background:#fff;font-weight:600;font-size:14px;color:var(--ink);cursor:pointer;transition:background .2s,color .2s,transform .08s}
-  .chip:active{transform:scale(.98)}
+  .topbar{display:flex;align-items:center;gap:10px}
+  .q-title{font-weight:900;font-size:22px}
+  .meta{font-size:14px;color:var(--muted)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px}
+  .chip{padding:12px 16px;border-radius:999px;border:1px solid var(--border);background:#fff;font-weight:700;cursor:pointer}
   .chip[data-active="true"]{background:var(--brand);color:#fff;border-color:var(--brand)}
-  .meta{font-size:12px;color:var(--muted)}
-  .nav{display:flex;gap:10px;margin-top:14px}
-  .hidden{display:none !important}
-  .grid{display:grid;gap:12px}
-  .choice{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border:1px solid #EADFD0;border-radius:14px;background:#fff;}
-  .result{display:flex;gap:14px;align-items:flex-start;border:1px solid #F0E6DA;padding:14px;border-radius:14px;background:#fff;animation:fadeUp .35s ease}
-  .avatar{flex-shrink:0;width:48px;height:48px;border-radius:12px;background:radial-gradient(60px 40px at 70% 20%, rgba(234,142,104,.5), transparent 60%), #FFEFE4;display:grid;place-items:center;font-weight:800;color:#9c5436;}
-  .badge{font-size:11px;border:1px solid #EADFD0;padding:3px 8px;border-radius:999px}
-  .price{font-weight:700}
-  .scorebar{height:6px;background:#F3E7D8;border-radius:999px;overflow:hidden}
+  .tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+  .tile{border:1px solid var(--border);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:8px;align-items:flex-start;background:#fff;cursor:pointer}
+  .tile strong{font-size:18px}
+  .tile[data-active="true"]{outline:3px solid var(--brand);background:#fff7f1}
+  .nav{display:flex;gap:10px;margin-top:16px}
+  .result{display:flex;gap:14px;align-items:flex-start;border:1px solid var(--border);padding:14px;border-radius:14px;background:#fff}
+  .avatar{width:52px;height:52px;border-radius:12px;background:radial-gradient(60px 40px at 70% 20%, rgba(234,142,104,.5), transparent 60%), #FFEFE4;display:grid;place-items:center;font-weight:800}
+  .badge{font-size:12px;border:1px solid var(--border);padding:4px 8px;border-radius:999px}
+  .price{font-weight:900}
+  .scorebar{height:8px;background:#F3E7D8;border-radius:999px;overflow:hidden}
   .scorebar > span{display:block;height:100%;background:linear-gradient(90deg,var(--brand),var(--brand-2))}
-  .menu-link{display:block;text-align:center;margin-top:10px;font-weight:700;color:#2d615a;text-decoration:none;}
+  .menu-link{display:block;text-align:center;margin-top:12px;font-weight:800;color:#2d615a;text-decoration:none}
   .slideIn{animation:slideIn .28s cubic-bezier(.22,.61,.36,1)}
-  .slideOut{animation:slideOut .22s ease forwards}
-  @keyframes slideIn{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:translateX(0)}}
-  @keyframes slideOut{to{opacity:0;transform:translateX(-12px)}}
-  @keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-  @media (prefers-reduced-motion: reduce){.slideIn,.slideOut,.result{animation:none}.fill{transition:none}}
-
-  /* SWIPE CARDS + FLIP */
-  .stack{position:relative;height:260px;margin-top:6px;perspective:1000px}
-  .cardOpt{position:absolute;inset:0;margin:auto;max-width:420px;height:240px;border-radius:16px;touch-action:none}
-  .cardInner{position:absolute;inset:0;border-radius:16px;transform-style:preserve-3d;transition:transform .35s ease}
-  .cardFace{position:absolute;inset:0;background:#fff;border:1px solid #EADFD0;box-shadow:0 12px 30px rgba(0,0,0,.07);border-radius:16px;backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;text-align:center}
-  .cardBack{transform:rotateY(180deg);background:#fffefb}
-  .flip .cardInner{transform:rotateY(180deg)}
-  .badge2{position:absolute;top:10px;left:12px;padding:6px 10px;border-radius:999px;background:#0002;font-size:12px}
-  .hintFlip{position:absolute;bottom:10px;left:0;right:0;text-align:center;font-size:12px;color:#7c6f62}
-  .cardOpt.like .cardFace{outline:2px solid #0ead69} 
-  .cardOpt.nope .cardFace{outline:2px solid #e11d48}
-
-  /* drag-to-rank */
-  .rank{display:flex;flex-wrap:wrap;gap:8px}
-  .rank .chip{user-select:none;touch-action:none}
-  .rank .chip::after{content:'≡';margin-left:8px;opacity:.45}
-
+  @keyframes slideIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+  /* Bigger slider */
+  input[type="range"]{width:100%;height:36px;-webkit-appearance:none;background:transparent;margin-top:8px}
+  input[type="range"]::-webkit-slider-runnable-track{height:12px;background:#f0e6da;border-radius:999px;border:1px solid var(--border)}
+  input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;margin-top:-10px;width:32px;height:32px;border-radius:50%;background:linear-gradient(180deg,#fff,#f7f2eb);border:2px solid var(--brand);box-shadow:0 4px 10px rgba(0,0,0,.15)}
+  input[type="range"]::-moz-range-track{height:12px;background:#f0e6da;border-radius:999px;border:1px solid var(--border)}
+  input[type="range"]::-moz-range-thumb{width:30px;height:30px;border-radius:50%;background:#fff;border:2px solid var(--brand)}
   /* dots */
-  #dots .dot{width:26px;height:26px;border-radius:999px;border:1px solid #eadfd0;background:#fff;display:grid;place-items:center;font-weight:700;cursor:pointer}
+  #dots{display:flex;gap:8px}
+  #dots .dot{width:28px;height:28px;border-radius:999px;border:1px solid var(--border);background:#fff;display:grid;place-items:center;font-weight:800;cursor:pointer}
   #dots .dot[data-active="true"]{background:var(--brand);color:#fff;border-color:var(--brand)}
-
-  /* toast + confetti */
+  /* confetti + toast */
   #confetti{position:fixed;inset:0;pointer-events:none}
-  .toast{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);background:#111;color:#fff;padding:10px 14px;border-radius:999px;font-size:13px;opacity:0;transition:opacity .25s, transform .25s;z-index:50}
+  .toast{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);background:#111;color:#fff;padding:10px 14px;border-radius:999px;font-size:14px;opacity:0;transition:opacity .25s, transform .25s;z-index:50}
   .toast.show{opacity:1;transform:translate(-50%, -4px)}
 </style>
 </head>
 <body>
 <canvas id="confetti"></canvas>
-<div class="toast" id="toast">Tip: Swipe ⟶ for Next, ⟵ for Back · Tap card to flip</div>
+<div class="toast" id="toast">Tip: swipe ⟶ Next, ⟵ Back</div>
 
 <div class="app" id="app">
   <header>
@@ -94,46 +86,41 @@
       <div class="logo" aria-hidden="true"></div>
       <div>
         <div class="title">Edge Rooftop</div>
-        <div class="subtitle">Drink Finder · Playful prototype</div>
+        <div class="subtitle">Drink Finder • simplified interactions</div>
       </div>
     </div>
   </header>
 
   <main>
-    <!-- LANDING -->
+    <!-- Landing -->
     <section id="landing" class="grid">
-      <div class="hero slideIn">
+      <div class="hero card slideIn">
         <div class="pill">🍹 Fresh-squeezed • Handcrafted</div>
-        <h2 style="margin:10px 0 6px">What are you in the mood for?</h2>
-        <p class="meta" style="margin:0 0 12px">Answer a few quick questions and we’ll suggest a drink you’ll love.</p>
+        <h2 style="margin:10px 0 6px;font-size:24px">What are you in the mood for?</h2>
+        <p class="meta">Answer a few quick questions and we’ll suggest a drink you’ll love.</p>
         <div class="cta">
-          <!-- Accessibility: add aria-label for screen readers -->
-          <button id="start" aria-label="Start drink finder questionnaire">Start</button>
+          <button id="start">Start</button>
           <button class="secondary" id="skip">Skip to menu</button>
-        </div>
-        <button id="dice" class="secondary" style="margin-top:10px">🎲 Surprise me</button>
-      </div>
-      <div class="card slideIn" style="display:flex;align-items:center;gap:12px;">
-        <div class="avatar">%</div>
-        <div>
-          <b>Smart Match</b><div class="meta">We score each drink and explain why it fits.</div>
         </div>
       </div>
     </section>
 
-    <!-- QUESTIONNAIRE -->
+    <!-- Wizard -->
     <section id="wizard" class="hidden">
       <div class="topbar">
-        <div class="progress" style="flex:1;margin-right:10px"><div class="fill" id="prog"></div></div>
-        <div id="dots" class="chips" style="gap:6px"></div>
+        <div class="progress" style="flex:1"><div class="fill" id="prog"></div></div>
+        <div id="dots"></div>
       </div>
+
       <div class="card slideIn" id="qCard">
-        <div class="q-title" id="qTitle">Question title</div>
+        <div class="q-title" id="qTitle">Question</div>
         <div id="qBody"></div>
-        <div id="peek" class="card" style="margin-top:10px;background:#fff7ed;border-style:dashed">
+
+        <div id="peek" class="card" style="margin-top:12px;background:#fff7ed;border-style:dashed">
           <div class="meta">Live preview</div>
           <div id="peekBody" class="meta">Pick a couple options to see a suggestion…</div>
         </div>
+
         <div class="nav">
           <button class="secondary" id="back">Back</button>
           <button id="next">Next</button>
@@ -141,18 +128,18 @@
       </div>
     </section>
 
-    <!-- RESULTS -->
+    <!-- Results -->
     <section id="results" class="hidden">
       <div class="card slideIn">
         <div class="q-title">Your picks</div>
         <div id="why" class="meta" style="margin-bottom:6px"></div>
         <div id="whyChips" class="chips" style="margin-top:0"></div>
         <div id="cards" class="grid" style="margin-top:8px"></div>
-        <a class="menu-link" href="#" id="fullMenu">View full menu</a>
+        <a href="#" id="fullMenu" class="menu-link">View full menu</a>
       </div>
     </section>
 
-    <!-- MENU (compact) -->
+    <!-- Menu -->
     <section id="menu" class="hidden">
       <div class="card slideIn">
         <div class="q-title">Full Menu (mock)</div>
@@ -162,233 +149,172 @@
     </section>
   </main>
 
-  <footer>Prototype mockup · not affiliated with Edge Rooftop</footer>
+  <footer style="padding:12px;text-align:center" class="meta">Prototype mockup · not affiliated with Edge Rooftop</footer>
 </div>
 
 <script>
 (function(){
-  const $ = sel => document.querySelector(sel);
-  const vibrate = (ms=12)=>{ try{ if(navigator.vibrate) navigator.vibrate(ms);}catch(e){} };
+  const $=s=>document.querySelector(s);
+  const vibrate=(ms=12)=>{try{navigator.vibrate&&navigator.vibrate(ms)}catch(e){}};
 
-  // --- DATA -----------------------------------------------------------------
-  const MENU = {
-    cocktails: [
-      {name:"Texas Sipper", price:16, tags:["vodka","citrus","light","bubbly","refreshing"], desc:"tito’s, elderflower, blood orange purée, Topo Chico"},
-      {name:"Signature Old Fashioned", price:18, tags:["whiskey","stirred","spirit-forward","classic","bitters"], desc:"Maker’s Mark, vanilla demerara, black walnut bitters"},
-      {name:"Sunny Disposition", price:18, tags:["whiskey","citrus","fruit","bright"], desc:"rye, hennessy VS, blueberry, coconut, lemon"},
-      {name:"Southern Belle", price:16, tags:["gin","citrus","herbal","bubbly"], desc:"Gray Whale gin, prickly pear & mint cordial, lime, yuzu soda"},
-      {name:"Zilker Mule", price:16, tags:["vodka","ginger","citrus","refreshing","bubbly"], desc:"Haku vodka, mango soju cordial, lime, ginger beer"},
-      {name:"Soco Marg", price:16, tags:["tequila","citrus","salt","classic"], desc:"tequila, orange, watermelon agave, lime"},
-      {name:"One Flew South", price:18, tags:["mezcal","bitter","citrus","smoky"], desc:"El Tesoro, Ilegal mezcal, Suze, passionfruit, lime"},
-      {name:"2nd Street Espresso Martini", price:18, tags:["vodka","coffee","sweet","creamy"], desc:"vodka, espresso liqueur, vanilla, espresso"},
-      {name:"Mama Tried (Frozen)", price:15, tags:["vodka","frozen","slushy","sweet","fun"], desc:"lemon vodka, moscato, peach purée, lemon"},
-      {name:"El Mexicano Margarita", price:16, tags:["tequila","spicy","citrus"], desc:"jalapeño-infused agave cordial, lime & orange"},
-      {name:"Pocketful of Sunshine (NA)", price:14, tags:["na","citrus","mint","bubbly"], desc:"Ritual NA tequila, prickly pear & mint, lime, yuzu"},
-      {name:"Dragon Berry Specialty (N/A)", price:12, tags:["na","tropical","sweet"], desc:"lime, orange, pineapple, dragon fruit"}
+  // ---- DATA (same as before) ----------------------------------------------
+  const MENU={
+    cocktails:[
+      {name:"Texas Sipper",price:16,tags:["vodka","citrus","light","bubbly","refreshing"],desc:"tito’s, elderflower, blood orange purée, Topo Chico"},
+      {name:"Signature Old Fashioned",price:18,tags:["whiskey","stirred","spirit-forward","classic","bitters"],desc:"Maker’s Mark, vanilla demerara, black walnut bitters"},
+      {name:"Sunny Disposition",price:18,tags:["whiskey","citrus","fruit","bright"],desc:"rye, hennessy VS, blueberry, coconut, lemon"},
+      {name:"Southern Belle",price:16,tags:["gin","citrus","herbal","bubbly"],desc:"Gray Whale gin, prickly pear & mint cordial, lime, yuzu soda"},
+      {name:"Zilker Mule",price:16,tags:["vodka","ginger","citrus","refreshing","bubbly"],desc:"Haku vodka, mango soju cordial, lime, ginger beer"},
+      {name:"Soco Marg",price:16,tags:["tequila","citrus","salt","classic"],desc:"tequila, orange, watermelon agave, lime"},
+      {name:"One Flew South",price:18,tags:["mezcal","bitter","citrus","smoky"],desc:"El Tesoro, Ilegal mezcal, Suze, passionfruit, lime"},
+      {name:"2nd Street Espresso Martini",price:18,tags:["vodka","coffee","sweet","creamy"],desc:"vodka, espresso liqueur, vanilla, espresso"},
+      {name:"Mama Tried (Frozen)",price:15,tags:["vodka","frozen","slushy","sweet","fun"],desc:"lemon vodka, moscato, peach purée, lemon"},
+      {name:"El Mexicano Margarita",price:16,tags:["tequila","spicy","citrus"],desc:"jalapeño-infused agave cordial, lime & orange"},
+      {name:"Pocketful of Sunshine (NA)",price:14,tags:["na","citrus","mint","bubbly"],desc:"Ritual NA tequila, prickly pear & mint, lime, yuzu"},
+      {name:"Dragon Berry Specialty (N/A)",price:12,tags:["na","tropical","sweet"],desc:"lime, orange, pineapple, dragon fruit"}
     ],
-    draft: [
-      {name:"ABW Pearl Snap Pilsner", price:9, tags:["beer","lager","crisp"]},
-      {name:"ABW 701 Sun IPA", price:9, tags:["beer","ipa","hoppy"]},
-      {name:"Zilker Icy Boys Lager", price:9, tags:["beer","lager","light"]},
-      {name:"Zilker Parks & Rec Pale Ale", price:9, tags:["beer","pale","hoppy"]}
+    draft:[
+      {name:"ABW Pearl Snap Pilsner",price:9,tags:["beer","lager","crisp"]},
+      {name:"ABW 701 Sun IPA",price:9,tags:["beer","ipa","hoppy"]},
+      {name:"Zilker Icy Boys Lager",price:9,tags:["beer","lager","light"]},
+      {name:"Zilker Parks & Rec Pale Ale",price:9,tags:["beer","pale","hoppy"]}
     ],
-    canned: [
-      {name:"Miller Light", price:8, tags:["beer","lager","light"]},
-      {name:"Michelob Ultra", price:8, tags:["beer","lager","light"]},
-      {name:"Live Oak Hefeweizen", price:8, tags:["beer","wheat","banana"]},
-      {name:"Best Day Kölsch (N/A)", price:8, tags:["na","beer","kolsch"]},
-      {name:"ABW Fire Eagle IPA", price:8, tags:["beer","ipa","hoppy"]},
-      {name:"High Noon Black Cherry", price:8, tags:["seltzer","fruit","bubbly"]}
+    canned:[
+      {name:"Miller Light",price:8,tags:["beer","lager","light"]},
+      {name:"Michelob Ultra",price:8,tags:["beer","lager","light"]},
+      {name:"Live Oak Hefeweizen",price:8,tags:["beer","wheat","banana"]},
+      {name:"Best Day Kölsch (N/A)",price:8,tags:["na","beer","kolsch"]},
+      {name:"ABW Fire Eagle IPA",price:8,tags:["beer","ipa","hoppy"]},
+      {name:"High Noon Black Cherry",price:8,tags:["seltzer","fruit","bubbly"]}
     ],
     wineRed:[
-      {name:"Clos Du Bois Cabernet", price:14, priceBottle:56, tags:["wine","red","cabernet","smooth"]},
-      {name:"Juggernaut Cabernet", price:19, priceBottle:76, tags:["wine","red","cabernet","bold"]},
-      {name:"Tapiz Malbec", price:15, priceBottle:60, tags:["wine","red","malbec"]},
-      {name:"Fossil Point Pinot Noir", price:14, priceBottle:56, tags:["wine","red","pinot"]},
-      {name:"Banshee Red Blend", price:14, priceBottle:56, tags:["wine","red","blend"]}
+      {name:"Clos Du Bois Cabernet",price:14,priceBottle:56,tags:["wine","red","cabernet","smooth"]},
+      {name:"Juggernaut Cabernet",price:19,priceBottle:76,tags:["wine","red","cabernet","bold"]},
+      {name:"Tapiz Malbec",price:15,priceBottle:60,tags:["wine","red","malbec"]},
+      {name:"Fossil Point Pinot Noir",price:14,priceBottle:56,tags:["wine","red","pinot"]},
+      {name:"Banshee Red Blend",price:14,priceBottle:56,tags:["wine","red","blend"]}
     ],
     wineWhite:[
-      {name:"Clos Du Bois Chardonnay", price:14, priceBottle:56, tags:["wine","white","chardonnay","buttery"]},
-      {name:"Stags Leap Chardonnay", price:19, priceBottle:76, tags:["wine","white","chardonnay","rich"]},
-      {name:"Scarpetta Pinot Grigio", price:14, priceBottle:56, tags:["wine","white","pinotgrigio","crisp"]},
-      {name:"Whitehaven Sauvignon Blanc", price:15, priceBottle:60, tags:["wine","white","sauvblanc","zesty"]}
+      {name:"Clos Du Bois Chardonnay",price:14,priceBottle:56,tags:["wine","white","chardonnay","buttery"]},
+      {name:"Stags Leap Chardonnay",price:19,priceBottle:76,tags:["wine","white","chardonnay","rich"]},
+      {name:"Scarpetta Pinot Grigio",price:14,priceBottle:56,tags:["wine","white","pinotgrigio","crisp"]},
+      {name:"Whitehaven Sauvignon Blanc",price:15,priceBottle:60,tags:["wine","white","sauvblanc","zesty"]}
     ],
     bubbles:[
-      {name:"Bisol Jeio Prosecco", price:14, priceBottle:56, tags:["wine","sparkling","prosecco","bubbly"]},
-      {name:"Veuve Clicquot", price:150, tags:["wine","sparkling","champagne","celebration"]},
-      {name:"Chandon Garden Spritz", price:17, priceBottle:68, tags:["wine","sparkling","spritz","bitter"]},
-      {name:"Whispering Angel Rosé", price:19, priceBottle:76, tags:["wine","rose","dry","light"]}
+      {name:"Bisol Jeio Prosecco",price:14,priceBottle:56,tags:["wine","sparkling","prosecco","bubbly"]},
+      {name:"Veuve Clicquot",price:150,tags:["wine","sparkling","champagne","celebration"]},
+      {name:"Chandon Garden Spritz",price:17,priceBottle:68,tags:["wine","sparkling","spritz","bitter"]},
+      {name:"Whispering Angel Rosé",price:19,priceBottle:76,tags:["wine","rose","dry","light"]}
     ]
   };
-  const ALL_DRINKS = [
-    ...MENU.cocktails, ...MENU.draft, ...MENU.canned,
-    ...MENU.wineRed, ...MENU.wineWhite, ...MENU.bubbles
+  const ALL_DRINKS=[...MENU.cocktails,...MENU.draft,...MENU.canned,...MENU.wineRed,...MENU.wineWhite,...MENU.bubbles];
+
+  // ---- QUESTIONS (updated types) ------------------------------------------
+  const QUESTIONS=[
+    { id:"mood", title:"Pick a vibe", type:"tiles", single:true, options:[
+      {v:"refreshing", note:"citrus, bubbly, light", emoji:"🍋"},
+      {v:"cozy",       note:"whiskey, stirred, espresso", emoji:"🧣"},
+      {v:"fun",        note:"frozen, fruity, sweet", emoji:"🎉"},
+      {v:"adventurous",note:"mezcal, bitter, spicy", emoji:"🧭"},
+      {v:"classic",    note:"old fashioneds, margs, prosecco", emoji:"🎩"},
+      {v:"zero-proof", note:"NA spirits, mint, yuzu", emoji:"🫧"},
+    ], required:true },
+
+    { id:"base", title:"Choose your base (up to 3)", type:"chips", multi:true, max:3,
+      options:["vodka","tequila","whiskey","gin","mezcal","beer","wine","seltzer","na"], required:true },
+
+    { id:"taste", title:"Pick up to 3 tastes", type:"chips", multi:true, max:3,
+      options:["citrus","sweet","bitter","spicy","herbal","coffee","bubbly","fruit"] },
+
+    { id:"strength", title:"How strong?", type:"slider", range:["light","balanced","spirit-forward"], required:true },
+
+    { id:"extras", title:"Any hard no's? (tap to toggle)", type:"chips", multi:true, options:["no coffee","no spicy","no bubbles","no bitter","no sweet"] }
   ];
 
-  const QUESTIONS = [
-    { id:"mood", title:"Pick a vibe", type:"chips", options:["refreshing","cozy","fun","adventurous","classic","zero-proof"], swipe:true },
-    { id:"base", title:"Base spirit?", type:"chips", options:["vodka","tequila","whiskey","gin","mezcal","beer","wine","seltzer","na"], swipe:true },
-    { id:"taste", title:"Rank your tastes (top 3)", type:"chips", multi:true, options:["citrus","sweet","bitter","spicy","herbal","coffee","bubbly","fruit"], rank:true },
-    { id:"strength", title:"How strong?", type:"single", slider:true, options:[
-      {label:"Light & sessionable", value:"light"},
-      {label:"Balanced", value:"balanced"},
-      {label:"Spirit-forward", value:"spirit-forward"}
-    ]},
-    { id:"extras", title:"Any hard no's? (hold to exclude)", type:"chips", multi:true, options:["no coffee","no spicy","no bubbles","no bitter","no sweet"], hold:true }
-  ];
-
-  // Details for flip-back (per option)
-  const DETAILS = {
-    mood: {
-      refreshing: "citrus • bubbly • light · spritzes, pilsners",
-      cozy: "whiskey • espresso • spirit-forward · stirred classics",
-      fun: "frozen • fruity • sweet · slushies & seltzers",
-      adventurous: "mezcal • bitter • spicy · amaro & smoke",
-      classic: "old fashioned • margarita • prosecco · timeless",
-      "zero-proof": "NA spirits • citrus • mint · yuzu sodas"
-    },
-    base: {
-      vodka: "Clean & neutral · great with citrus & bubbles",
-      tequila: "Citrus-friendly · classic + spicy margs",
-      whiskey: "Stirred, boozy, cozy · old fashioneds",
-      gin: "Herbal & bright · pairs with citrus & mint",
-      mezcal: "Smoky & adventurous · bitter & citrus",
-      beer: "Crisp lagers, hoppy IPAs, wheat ales",
-      wine: "By the glass or bottle · reds, whites, rosé, bubbles",
-      seltzer: "Light & fruity · low effort, bubbly",
-      na: "Zero-proof spirits · bright & refreshing"
-    }
-  };
-
-  // --- APP STATE ------------------------------------------------------------
-  const App = window.App = {
-    q: { step:0, answers:{} },
-    show(section){
-      ["landing","wizard","results","menu"].forEach(s => $("#"+s).classList.add("hidden"));
-      $("#"+section).classList.remove("hidden");
-    },
-    // accepts optional prefilled answers
-    start(prefill = {}){ 
-      this.q = { step:0, answers: prefill };
-      this.show("wizard"); 
-      this.renderQuestion(true); 
-      toastOnce(); 
-    },
-    back(){
-      if(this.q.step>0){
-        this.animateCardOut(()=>{ this.q.step--; this.renderQuestion(); });
-      } else { this.show("landing"); }
-    },
+  // ---- APP -----------------------------------------------------------------
+  const App={
+    q:{step:0,answers:{}},
+    show(s){["landing","wizard","results","menu"].forEach(id=>$("#"+id).classList.add("hidden")); $("#"+s).classList.remove("hidden")},
+    start(){ this.q={step:0,answers:{strength:"balanced"}}; this.show("wizard"); this.renderQuestion(true); toastOnce(); },
+    back(){ if(this.q.step>0){ this.q.step--; this.renderQuestion(); } else { this.show("landing"); } },
     next(){
-      if(this.q.step < QUESTIONS.length-1){
-        this.animateCardOut(()=>{ this.q.step++; this.renderQuestion(); });
-      } else { this.show("results"); this.runMatch(); burst(); }
-    },
-    showMenu(cat){ this.show("menu"); this.renderMenu(cat||"cocktails"); },
-    animateCardOut(cb){
-      const card = $("#qCard");
-      card.classList.remove("slideIn");
-      card.classList.add("slideOut");
-      window.setTimeout(()=>{ card.classList.remove("slideOut"); cb(); }, 190);
+      if(this.q.step<QUESTIONS.length-1){ this.q.step++; this.renderQuestion(); }
+      else { this.show("results"); this.runMatch(); burst(); }
     },
     renderDots(){
       const d=$("#dots"); d.innerHTML="";
-      QUESTIONS.forEach((_,i)=>{
-        const b=document.createElement("div"); b.className="dot"; b.textContent=i+1;
-        b.dataset.active = i===this.q.step;
-        b.onclick=()=>{ this.q.step=i; this.renderQuestion(true); };
-        d.appendChild(b);
-      });
+      QUESTIONS.forEach((_,i)=>{ const b=document.createElement("div"); b.className="dot"; b.textContent=i+1; b.dataset.active=i===this.q.step; b.onclick=()=>{this.q.step=i; this.renderQuestion(true)}; d.appendChild(b); });
     },
     renderQuestion(initial){
-      $("#prog").style.width = (this.q.step)/QUESTIONS.length*100 + "%";
+      $("#prog").style.width = (this.q.step)/QUESTIONS.length*100+"%";
       this.renderDots();
-      const item = QUESTIONS[this.q.step];
-      $("#qTitle").textContent = item.title;
-      const body = $("#qBody"); body.innerHTML = "";
-      const card = $("#qCard");
-      if(!initial){ card.classList.add("slideIn"); setTimeout(()=>card.classList.remove("slideIn"), 260); }
-
-      // special renderers
-      if(item.swipe && !item.multi){
-        const stack = document.createElement('div'); stack.className='stack'; body.appendChild(stack);
-        // pass details map based on question id
-        const det = DETAILS[item.id] || {};
-        mountSwipeStack(stack, item.options, (opt, liked)=>{
-          if(liked){ this.q.answers[item.id]=opt; vibrate(); this.next(); }
-        }, det);
-        updatePeek();
-        this.navState(); return;
-      }
-      if(item.rank){
-        const wrap = document.createElement('div'); body.appendChild(wrap);
-        mountRankChips(wrap, item.options, ranked=>{
-          this.q.answers.taste = ranked.slice(0,3);
-          updatePeek();
+      const q=QUESTIONS[this.q.step]; $("#qTitle").textContent=q.title;
+      const body=$("#qBody"); body.innerHTML="";
+      // RENDERERS
+      if(q.type==="tiles"){
+        const grid=document.createElement("div"); grid.className="tiles";
+        q.options.forEach(o=>{
+          const div=document.createElement("button"); div.type="button"; div.className="tile";
+          div.dataset.active = this.q.answers.mood===o.v;
+          div.innerHTML=`<strong>${o.emoji||""} ${o.v}</strong><span class="meta">${o.note||""}</span>`;
+          div.onclick=()=>{ this.q.answers.mood = (this.q.answers.mood===o.v?null:o.v); updatePeek(); this.renderQuestion(true); vibrate(); };
+          grid.appendChild(div);
         });
-        const hint = document.createElement('div'); hint.className='meta'; hint.style.marginTop='8px';
-        hint.textContent = 'Drag to rank. We’ll use your top 3.';
-        body.appendChild(hint);
-        this.navState(); return;
+        body.appendChild(grid);
       }
-      if(item.slider){
-        const slider = document.createElement('input');
-        slider.type='range'; slider.min=0; slider.max=2; slider.step=1; slider.value={light:0,balanced:1,"spirit-forward":2}[this.q.answers.strength] ?? 1;
-        const lab = document.createElement('div'); lab.className='meta'; lab.id='strengthLabel'; lab.style.marginTop='6px';
-        const labels=[["Light & sessionable","😌"],["Balanced","🙂"],["Spirit-forward","😮‍💨"]];
-        const update=()=>{ const v=+slider.value; lab.textContent=labels[v][0]+" "+labels[v][1];
-          this.q.answers.strength=["light","balanced","spirit-forward"][v]; updatePeek(); vibrate(8);}
-        slider.oninput=update; body.appendChild(slider); body.appendChild(lab); update();
-        this.navState(); return;
-      }
-      // generic chips (with optional hold-to-exclude)
-      if(item.type==="chips"){
-        const wrap = document.createElement("div"); wrap.className="chips";
-        item.options.forEach(opt=>{
-          const div = document.createElement("button");
-          div.className="chip"; div.type="button"; div.textContent=opt;
-          const v = this.q.answers[item.id]|| (item.multi?[]:null);
-          const active = item.multi ? v.includes(opt) : v===opt;
-          div.dataset.active = active;
-          let holdTimer=null;
-          div.addEventListener("pointerdown",()=>{
-            if(item.hold){ holdTimer=setTimeout(()=>{ 
-              if(item.multi){
-                const set=new Set(this.q.answers[item.id]||[]);
-                set.has(opt)?set.delete(opt):set.add(opt);
-                this.q.answers[item.id]=[...set];
-              } else { this.q.answers[item.id]=opt; }
-              vibrate(40); this.renderQuestion(true);
-            },500); }
-          });
-          div.addEventListener("pointerup",()=>{ if(holdTimer) clearTimeout(holdTimer); });
-          div.addEventListener("click",()=>{
-            if(item.hold) return; 
-            if(item.multi){
-              const arr = new Set(this.q.answers[item.id]||[]);
-              if(arr.has(opt)) arr.delete(opt); else arr.add(opt);
-              this.q.answers[item.id] = [...arr];
+      if(q.type==="chips"){
+        const wrap=document.createElement("div"); wrap.className="chips";
+        const chosen=new Set(this.q.answers[q.id]||[]);
+        q.options.forEach(opt=>{
+          const b=document.createElement("button"); b.className="chip"; b.type="button"; b.textContent=opt;
+          b.dataset.active = chosen.has(opt);
+          b.onclick=()=>{
+            if(q.multi){
+              if(chosen.has(opt)){ chosen.delete(opt); }
+              else{
+                if(q.max && chosen.size>=q.max){ flashToast(`Max ${q.max}`); return; }
+                chosen.add(opt);
+              }
+              this.q.answers[q.id]=[...chosen];
             }else{
-              this.q.answers[item.id] = (this.q.answers[item.id]===opt) ? null : opt;
+              this.q.answers[q.id] = (this.q.answers[q.id]===opt?null:opt);
             }
-            vibrate();
-            this.renderQuestion();
-          });
-          wrap.appendChild(div);
+            updatePeek(); this.renderQuestion(true); vibrate();
+          };
+          wrap.appendChild(b);
         });
-        body.appendChild(wrap);
+        // counter
+        if(q.multi){ const c=document.createElement("div"); c.className="meta"; c.style.marginTop="6px";
+          c.id="counter"; c.textContent=`Selected ${chosen.size}${q.max?` / ${q.max}`:""}`; body.appendChild(wrap); body.appendChild(c);
+        } else body.appendChild(wrap);
       }
-      updatePeek();
-      this.navState();
-    },
-    navState(){
-      $("#back").disabled = this.q.step===0;
+      if(q.type==="slider"){
+        const slider=document.createElement("input"); slider.type="range"; slider.min=0; slider.max=q.range.length-1; slider.step=1;
+        const v=q.range.indexOf(this.q.answers.strength); slider.value=(v<0?1:v);
+        const lab=document.createElement("div"); lab.className="meta"; lab.style.marginTop="8px";
+        const EMO={light:"😌",balanced:"🙂","spirit-forward":"😮‍💨"};
+        const upd=()=>{ const val=q.range[+slider.value]; lab.textContent=`${val} ${EMO[val]||""}`; this.q.answers.strength=val; updatePeek(); };
+        slider.oninput=upd; upd(); body.appendChild(slider); body.appendChild(lab);
+      }
+
+      // nav state + validation
+      const ok=this.validate(q);
+      $("#next").disabled=!ok;
       $("#next").textContent = this.q.step===QUESTIONS.length-1 ? "See results" : "Next";
+      if(!initial){ $("#qCard").classList.add("slideIn"); setTimeout(()=>$("#qCard").classList.remove("slideIn"),240); }
+      updatePeek();
+    },
+    validate(q){
+      if(!q.required) return true;
+      const v=this.q.answers[q.id];
+      if(q.type==="chips" && q.multi){ return Array.isArray(v) && v.length>0; }
+      if(q.type==="tiles"){ return !!v; }
+      if(q.type==="slider"){ return !!this.q.answers.strength; }
+      return !!v;
     },
     scoreDrink(d){
-      let score = 0, why = [];
-      const ans = this.q.answers; const tags = (d.tags||[]);
-      const moodMap = {
+      let score=0, why=[]; const ans=this.q.answers; const tags=d.tags||[];
+      const moodMap={
         refreshing:["citrus","bubbly","light","lager","seltzer","na"],
         cozy:["whiskey","spirit-forward","stirred","espresso","malbec","pinot"],
         fun:["frozen","slushy","fruit","sweet","seltzer"],
@@ -396,20 +322,23 @@
         classic:["old fashioned","margarita","cabernet","sauvblanc","prosecco"],
         "zero-proof":["na"]
       };
-      if(ans.base && tags.includes(ans.base)) { score+=30; why.push("base: "+ans.base); }
-      if(ans.base==="wine" && tags.includes("wine")) { score+=25; why.push("wine"); }
-      if(ans.base==="beer" && tags.includes("beer")) { score+=25; why.push("beer"); }
-      if(ans.base==="seltzer" && tags.includes("seltzer")) { score+=25; why.push("seltzer"); }
-      if(ans.base==="na" && tags.includes("na")) { score+=30; why.push("zero-proof"); }
+      // base (multi)
+      (ans.base||[]).forEach(b=>{ if(tags.includes(b)) { score+=22; why.push("base: "+b); }});
+      if((ans.base||[]).includes("wine") && tags.includes("wine")) { score+=18; }
+      if((ans.base||[]).includes("beer") && tags.includes("beer")) { score+=18; }
+      if((ans.base||[]).includes("seltzer") && tags.includes("seltzer")) { score+=18; }
+      if((ans.base||[]).includes("na") && tags.includes("na")) { score+=22; }
+
       (ans.taste||[]).forEach(t=>{ if(tags.includes(t)) { score+=10; why.push(t); } });
+
       if(ans.strength){
-        if(ans.strength==="light" && (tags.includes("light")||tags.includes("bubbly"))) { score+=8; }
-        if(ans.strength==="spirit-forward" && tags.includes("spirit-forward")) { score+=12; }
-        if(ans.strength==="balanced") { score+=6; }
+        if(ans.strength==="light" && (tags.includes("light")||tags.includes("bubbly"))) score+=8;
+        if(ans.strength==="spirit-forward" && tags.includes("spirit-forward")) score+=12;
+        if(ans.strength==="balanced") score+=6;
       }
       if(ans.mood){
-        const m = (DETAILS.mood && DETAILS.mood[ans.mood]) ? ans.mood : null;
-        if(m){ score+=10; why.push(ans.mood); }
+        const m=moodMap[ans.mood]||[];
+        if(m.some(t=>tags.includes(t))) { score+=10; why.push(ans.mood); }
       }
       (ans.extras||[]).forEach(x=>{
         if(x==="no coffee" && tags.includes("coffee")) score-=25;
@@ -418,227 +347,88 @@
         if(x==="no bitter" && tags.includes("bitter")) score-=18;
         if(x==="no sweet" && tags.includes("sweet")) score-=10;
       });
-      return {score, why};
+      return {score,why};
     },
     runMatch(){
-      const ranked = ALL_DRINKS
-        .map(d=>{ const {score, why}=this.scoreDrink(d); return {...d, score, why}; })
-        .sort((a,b)=>b.score-a.score);
-      const top = ranked.slice(0,3);
-      const reasons = Object.entries(this.q.answers)
-        .filter(([k,v])=>v && (Array.isArray(v)?v.length:v))
-        .map(([k,v])=>`${k}: ${Array.isArray(v)?v.join(", "):v}`)
-        .join(" · ");
-      $("#why").textContent = "Based on " + (reasons||"your selections");
+      const ranked=ALL_DRINKS.map(d=>{const {score,why}=this.scoreDrink(d); return {...d,score,why};}).sort((a,b)=>b.score-a.score);
+      const top=ranked.slice(0,3);
+      const reasons=Object.entries(this.q.answers).filter(([k,v])=>v && (Array.isArray(v)?v.length:v)).map(([k,v])=>`${k}: ${Array.isArray(v)?v.join(", "):v}`).join(" · ");
+      $("#why").textContent="Based on "+(reasons||"your selections");
 
-      // why chips
       $("#whyChips").innerHTML="";
       Object.entries(this.q.answers).forEach(([k,v])=>{
-        const arr = Array.isArray(v)?v:[v];
-        arr.filter(Boolean).forEach(val=>{
-          const s=document.createElement('span'); s.className='chip'; s.textContent=val; s.style.animation='fadeUp .3s ease';
-          $("#whyChips").appendChild(s);
+        (Array.isArray(v)?v:[v]).filter(Boolean).forEach(val=>{
+          const s=document.createElement("span"); s.className="chip"; s.textContent=val; $("#whyChips").appendChild(s);
         });
       });
 
-      const wrap = $("#cards"); wrap.innerHTML="";
+      const wrap=$("#cards"); wrap.innerHTML="";
       top.forEach(d=>{
-        const div = document.createElement("div");
-        div.className="result";
-        const badge = (d.tags||[]).includes("na") ? "Zero-proof" :
-                      (d.tags||[]).includes("wine") ? "Wine" :
-                      (d.tags||[]).includes("beer") ? "Beer" : "Cocktail";
-        div.innerHTML = `
+        const badge=(d.tags||[]).includes("na")?"Zero-proof":(d.tags||[]).includes("wine")?"Wine":(d.tags||[]).includes("beer")?"Beer":"Cocktail";
+        const div=document.createElement("div"); div.className="result";
+        div.innerHTML=`
           <div class="avatar">🍸</div>
           <div>
             <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-              <div><b>${d.name}</b></div>
+              <b style="font-size:18px">${d.name}</b>
               <span class="badge">${badge}</span>
               <span class="price">$${d.price}${d.priceBottle?` · bottle $${d.priceBottle}`:""}</span>
             </div>
             <div class="meta" style="margin:6px 0">${d.desc||(d.tags||[]).join(" • ")}</div>
-            <div class="scorebar"><span style="width:${Math.max(0,Math.min(100, 50 + d.score))}%"></span></div>
+            <div class="scorebar"><span style="width:${Math.max(0,Math.min(100,50+d.score))}%"></span></div>
             <div class="meta" style="margin-top:6px">Why: ${d.why.slice(0,4).join(", ")}</div>
           </div>`;
         wrap.appendChild(div);
       });
     },
+    showMenu(cat){ this.show("menu"); this.renderMenu(cat||"cocktails"); },
     renderMenu(category="cocktails"){
-      const groups = {cocktails:"Cocktails",draft:"Draft Beer",canned:"Canned",wineRed:"Red Wine",wineWhite:"White Wine",bubbles:"Sparkling + Rosé"};
-      const tabs = $("#tabs"); tabs.innerHTML="";
+      const groups={cocktails:"Cocktails",draft:"Draft Beer",canned:"Canned",wineRed:"Red Wine",wineWhite:"White Wine",bubbles:"Sparkling + Rosé"};
+      const tabs=$("#tabs"); tabs.innerHTML="";
       Object.keys(groups).forEach(key=>{
-        const b = document.createElement("button");
-        b.className="chip"; b.textContent=groups[key];
-        b.dataset.active = key===category;
-        b.onclick=()=>{bop(); this.renderMenu(key);};
-        tabs.appendChild(b);
+        const b=document.createElement("button"); b.className="chip"; b.textContent=groups[key]; b.dataset.active=key===category;
+        b.onclick=()=>{ this.renderMenu(key); vibrate(); }; tabs.appendChild(b);
       });
-      const list = $("#menuList"); list.innerHTML="";
+      const list=$("#menuList"); list.innerHTML="";
       (MENU[category]||[]).forEach(d=>{
-        const row = document.createElement("div");
-        row.className="choice";
-        row.innerHTML = `<div><b>${d.name}</b><div class="meta">${d.desc|| (d.tags||[]).join(" • ")}</div></div>
-                         <div style="display:grid; text-align:right"><span class="price">$${d.price}</span>${d.priceBottle?`<span class="meta">Bottle $${d.priceBottle}</span>`:""}</div>`;
+        const row=document.createElement("div"); row.className="result";
+        row.innerHTML=`<div class="avatar">🥂</div>
+          <div><b>${d.name}</b><div class="meta">${d.desc||(d.tags||[]).join(" • ")}</div></div>
+          <div style="margin-left:auto;text-align:right"><span class="price">$${d.price}</span>${d.priceBottle?`<div class="meta">Bottle $${d.priceBottle}</div>`:""}</div>`;
         list.appendChild(row);
       });
     }
   };
 
-  // --- HELPERS: swipe cards (with flip), rank chips, preview, confetti -----
-  function mountSwipeStack(el, options, onChoice, detailsMap={}){
-    el.innerHTML='';
-    [...options].reverse().forEach(opt=>{
-      const wrap = document.createElement('div'); wrap.className='cardOpt';
-      const inner = document.createElement('div'); inner.className='cardInner';
-      const front = document.createElement('div'); front.className='cardFace cardFront';
-      const back = document.createElement('div'); back.className='cardFace cardBack';
-
-      const badge = document.createElement('div'); badge.className='badge2'; badge.textContent='Swipe ← / →';
-      const flipHint = document.createElement('div'); flipHint.className='hintFlip'; flipHint.textContent='Tap to flip';
-
-      front.innerHTML = `<div style="font-size:28px;font-weight:800;text-transform:capitalize">${opt}</div>`;
-      front.appendChild(badge); front.appendChild(flipHint);
-
-      back.innerHTML = `<div style="font-size:15px;line-height:1.3">
-        <div style="font-weight:700;margin-bottom:6px">${opt}</div>
-        <div class="meta">${detailsMap[opt] || "Explore this option"}</div>
-      </div>`;
-
-      inner.appendChild(front); inner.appendChild(back);
-      wrap.appendChild(inner); el.appendChild(wrap);
-
-      let sx,sy,x=0,y=0; let active=false; let moved=false;
-      wrap.addEventListener('pointerdown',e=>{active=true;moved=false;sx=e.clientX;sy=e.clientY;wrap.setPointerCapture(e.pointerId)});
-      wrap.addEventListener('pointermove',e=>{
-        if(!active) return; x=e.clientX-sx; y=e.clientY-sy; if(Math.abs(x)>4||Math.abs(y)>4) moved=true;
-        wrap.style.transform=`translate(${x}px,${y}px) rotate(${x/18}deg)`;
-        wrap.classList.toggle('like',x>50); wrap.classList.toggle('nope',x<-50);
-      });
-      wrap.addEventListener('pointerup',()=>{
-        if(!active) return; active=false;
-        // tap → flip (no big movement)
-        if(!moved && Math.abs(x)<8 && Math.abs(y)<8){
-          wrap.classList.toggle('flip');
-          return;
-        }
-        // swipe decision
-        if(Math.abs(x)>80){
-          const liked = x>0;
-          wrap.style.transition='transform .25s ease';
-          wrap.style.transform=`translate(${liked?600:-600}px,${y}px) rotate(${x/12}deg)`;
-          setTimeout(()=>{wrap.remove(); onChoice(opt, liked)},220);
-        }else{
-          wrap.style.transition='transform .2s ease'; wrap.style.transform='translate(0,0)';
-          wrap.classList.remove('like','nope'); setTimeout(()=>wrap.style.transition='',200);
-        }
-      });
-    });
-  }
-
-  function mountRankChips(container, options, onDone){
-    container.className='rank';
-    options.forEach(opt=>{
-      const b=document.createElement('button'); b.className='chip'; b.textContent=opt;
-      container.appendChild(b);
-      let sx,sy; let dragging=false;
-      b.addEventListener('pointerdown',e=>{
-        dragging=true; sx=e.clientX; sy=e.clientY; b.setPointerCapture(e.pointerId);
-        b.style.position='relative'; b.style.zIndex=2;
-      });
-      b.addEventListener('pointermove',e=>{
-        if(!dragging) return;
-        const dx=e.clientX-sx, dy=e.clientY-sy;
-        b.style.transform=`translate(${dx}px,${dy}px)`;
-        const siblings=[...container.children].filter(n=>n!==b);
-        siblings.forEach(s=>{
-          const r=s.getBoundingClientRect(), br=b.getBoundingClientRect();
-          if(Math.abs(br.left - r.left) < s.offsetWidth/2 && Math.abs(br.top - r.top) < s.offsetHeight/2){
-            if(br.top < r.top) container.insertBefore(b,s); else container.insertBefore(b,s.nextSibling);
-          }
-        });
-      });
-      b.addEventListener('pointerup',()=>{
-        if(!dragging) return; dragging=false;
-        b.style.position=''; b.style.transform=''; b.style.zIndex='';
-        onDone([...container.children].map(n=>n.textContent));
-      });
-    });
-  }
-
-  const _score = App.scoreDrink.bind(App);
+  // ---- Helpers -------------------------------------------------------------
+  const _score=App.scoreDrink.bind(App);
   function updatePeek(){
-    const top = ALL_DRINKS.map(d=>({d, ..._score(d)})).sort((a,b)=>b.score-a.score)[0];
+    const top=ALL_DRINKS.map(d=>({d,..._score(d)})).sort((a,b)=>b.score-a.score)[0];
     $("#peekBody").innerHTML = top ? `<b>${top.d.name}</b> · $${top.d.price}<div class="meta">${(top.d.tags||[]).join(" • ")}</div>` : "—";
   }
-  function bop(ms=12){ try{ if(navigator.vibrate) navigator.vibrate(ms);}catch(e){} }
+  function flashToast(msg){ const t=$("#toast"); t.textContent=msg; t.classList.add("show"); setTimeout(()=>{t.classList.remove("show"); t.textContent="Tip: swipe ⟶ Next, ⟵ Back"},1400); }
+  // confetti mini
+  const canvas=$("#confetti"), ctx=canvas.getContext("2d"); let P=[]; function size(){canvas.width=innerWidth; canvas.height=innerHeight} size(); addEventListener("resize",size);
+  function burst(){for(let i=0;i<80;i++){P.push({x:canvas.width/2,y:120+Math.random()*40,vx:(Math.random()-0.5)*6,vy:(Math.random()*-6-3),r:2+Math.random()*3,a:1,h:Math.random()*360});} if(!anim) anim=requestAnimationFrame(loop)}
+  let anim=null; function loop(){ctx.clearRect(0,0,canvas.width,canvas.height); P.forEach(p=>{p.vy+=0.12;p.x+=p.vx;p.y+=p.vy;p.a-=0.008;ctx.fillStyle=`hsla(${p.h},80%,60%,${Math.max(0,p.a)})`;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.283);ctx.fill()}); P=P.filter(p=>p.a>0&&p.y<canvas.height+10); if(P.length) anim=requestAnimationFrame(loop); else{cancelAnimationFrame(anim);anim=null}}
+  window.burst=burst;
 
-  // confetti
-  const c = document.getElementById("confetti"), ctx = c.getContext("2d");
-  let P=[]; function resize(){ c.width=window.innerWidth; c.height=window.innerHeight }
-  resize(); window.addEventListener("resize",resize);
-  function burst(){
-    for(let i=0;i<90;i++){
-      P.push({x:c.width/2,y:120+Math.random()*40, vx:(Math.random()-0.5)*6, vy:(Math.random()*-6-3), r:2+Math.random()*3, a:1, h:Math.random()*360});
-    }
-    if(!anim) anim = requestAnimationFrame(loop);
-  }
-  let anim=null;
-  function loop(){
-    ctx.clearRect(0,0,c.width,c.height);
-    P.forEach(p=>{
-      p.vy+=0.12; p.x+=p.vx; p.y+=p.vy; p.a-=0.008;
-      ctx.fillStyle=`hsla(${p.h},80%,60%,${Math.max(0,p.a)})`;
-      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();
-    });
-    P = P.filter(p=>p.a>0 && p.y<c.height+10);
-    if(P.length){ anim = requestAnimationFrame(loop);} else { cancelAnimationFrame(anim); anim=null; }
-  }
-  window.burst = burst;
+  // swipe next/back on page
+  let sx=0, sy=0; const area=$("#app");
+  area.addEventListener("touchstart",e=>{const t=e.changedTouches[0]; sx=t.clientX; sy=t.clientY;});
+  area.addEventListener("touchend",e=>{const t=e.changedTouches[0]; const dx=t.clientX-sx, dy=t.clientY-sy;
+    if(Math.abs(dx)>70 && Math.abs(dy)<60 && !$("#wizard").classList.contains("hidden")){ if(dx<0) App.next(); else App.back(); }});
 
-  // swipe next/back on the whole app (wizard only)
-  let sx=0, sy=0;
-  const area = document.getElementById("app");
-  area.addEventListener("touchstart",(e)=>{ const t=e.changedTouches[0]; sx=t.clientX; sy=t.clientY; });
-  area.addEventListener("touchend",(e)=>{
-    const t=e.changedTouches[0]; const dx=t.clientX-sx, dy=t.clientY-sy;
-    if(Math.abs(dx)>60 && Math.abs(dy)<50 && !$("#wizard").classList.contains("hidden")){
-      if(dx<0) App.next(); else App.back();
-    }
-  });
+  document.addEventListener("keydown",e=>{ if($("#wizard").classList.contains("hidden")) return; if(e.key==="ArrowRight"||e.key==="Enter") App.next(); if(e.key==="ArrowLeft") App.back(); });
 
-  // keyboard shortcuts
-  document.addEventListener('keydown',(e)=>{
-    if($("#wizard").classList.contains("hidden")) return;
-    if(e.key==="ArrowRight") App.next();
-    if(e.key==="ArrowLeft") App.back();
-    if(e.key==="Enter") App.next();
-  });
+  function toastOnce(){ if(localStorage.getItem("df_toast")) return; const t=$("#toast"); t.classList.add("show"); setTimeout(()=>t.classList.remove("show"),2400); localStorage.setItem("df_toast","1") }
 
-  // one-time toast
-  function toastOnce(){
-    if(localStorage.getItem("df_toast")) return;
-    const t = $("#toast"); t.classList.add("show");
-    setTimeout(()=>t.classList.remove("show"), 2400);
-    localStorage.setItem("df_toast","1");
-  }
-
-  // --- EVENTS ---------------------------------------------------------------
-  document.getElementById("start").addEventListener("click",()=>{ App.start(); bop(); });
-  document.getElementById("skip").addEventListener("click",()=>{ App.showMenu("cocktails"); bop(); });
-  document.getElementById("back").addEventListener("click",()=>{ App.back(); bop(8); });
-  document.getElementById("next").addEventListener("click",()=>{ App.next(); bop(); });
-  document.getElementById("fullMenu").addEventListener("click",(e)=>{ e.preventDefault(); App.showMenu("cocktails"); bop(); });
-
-  // Surprise me → prefill answers and start with them
-  document.getElementById("dice").addEventListener("click", () => {
-    const prefill = {
-      mood: ["refreshing","fun","classic","adventurous"][Math.floor(Math.random()*4)],
-      base: ["tequila","vodka","whiskey","wine","na","gin"][Math.floor(Math.random()*6)],
-      taste: ["citrus","bubbly","fruit","sweet","herbal"].slice(0, 1 + Math.floor(Math.random()*3)),
-      strength: ["light","balanced","spirit-forward"][Math.floor(Math.random()*3)]
-    };
-    App.start(prefill);
-  });
+  // ---- Events --------------------------------------------------------------
+  $("#start").onclick=()=>{App.start(); vibrate();};
+  $("#skip").onclick=()=>{App.showMenu("cocktails"); vibrate();};
+  $("#back").onclick=()=>{App.back(); vibrate(8);};
+  $("#next").onclick=()=>{App.next(); vibrate();};
+  $("#fullMenu").onclick=(e)=>{e.preventDefault(); App.showMenu("cocktails");};
 
   // init
   App.show("landing");
